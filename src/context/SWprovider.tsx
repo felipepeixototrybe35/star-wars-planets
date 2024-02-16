@@ -3,6 +3,8 @@ import SWContext from './SWcontext';
 
 function SWProvider({ children }: { children: React.ReactNode }) {
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState('');
+  const [plsearched, setPlsearched] = useState([]);
 
   useEffect(() => {
     const fetchSWPlanets = async () => {
@@ -17,7 +19,27 @@ function SWProvider({ children }: { children: React.ReactNode }) {
     fetchSWPlanets();
   }, []);
 
-  return <SWContext.Provider value={ { data } }>{children}</SWContext.Provider>;
+  useEffect(() => { // req2
+    const searchedData = () => {
+      const newData = data.filter((planet: any) => planet
+        .name.includes(search.toLowerCase()));
+      console.log(newData);
+      setPlsearched(newData);
+    };
+    searchedData();
+  }, [data, search]);
+
+  return (
+    <SWContext.Provider
+      value={ {
+        data,
+        setSearch,
+        plsearched,
+      } }
+    >
+      {children}
+    </SWContext.Provider>
+  );
 }
 
 export default SWProvider;
