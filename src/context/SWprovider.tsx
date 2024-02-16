@@ -29,7 +29,7 @@ function SWProvider({ children }: { children: React.ReactNode }) {
     fetchSWPlanets();
   }, []);
 
-  useEffect(() => { // req2
+  useEffect(() => {
     const searchedData = () => {
       const newData = data.filter((planet: any) => planet
         .name.includes(search.toLowerCase()));
@@ -53,7 +53,7 @@ function SWProvider({ children }: { children: React.ReactNode }) {
     if (target.name === 'valor') setValue(target.value);
   };
   const handleFilter = () => {
-    const dataFiltered = plsearched.filter((planet: any) => { // req7avançado
+    const dataFiltered = plsearched.filter((planet: any) => {
       if (comparison === 'maior que') return Number(planet[column]) > Number(value);
       if (comparison === 'menor que') return Number(planet[column]) < Number(value);
       return Number(planet[column]) === Number(value);
