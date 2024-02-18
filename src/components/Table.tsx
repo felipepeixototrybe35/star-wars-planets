@@ -12,6 +12,9 @@ function Table() {
     saveOptions,
     handleFilter,
     columnOptions,
+    filters, // req7
+    excludeFilter, // req7
+    excludeAllFilters, // req7
   } = useContext(SWContext);
 
   const dataKeys = Object.keys(data[0] || {});
@@ -52,6 +55,31 @@ function Table() {
           onChange={ ({ target }) => saveOptions(target) }
         />
         <button data-testid="button-filter" onClick={ handleFilter }>Filtrar</button>
+      </div>
+      <div>
+        {filters.map((filter: any) => ( // req7
+          <div data-testid="filter" key={ filter.column }>
+            <span>
+              {filter.column}
+              {' '}
+            </span>
+            <span>{filter.comparison}</span>
+            <span>{filter.value}</span>
+            <button
+              type="button"
+              onClick={ () => excludeFilter(filter.column) }
+            >
+              X
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          data-testid="button-remove-filters"
+          onClick={ excludeAllFilters }
+        >
+          Remover Filtros
+        </button>
       </div>
       <table>
         <thead>

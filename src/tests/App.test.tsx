@@ -4,7 +4,6 @@ import Table from '../components/Table';
 import SWProvider from '../context/SWprovider';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
-// import { toBeInTheDocument } from '@testing-library/jest-dom/matchers';
 
 test('A renderização de Table e seus elementos', () => {
   render(<SWProvider ><Table /></SWProvider>);
@@ -36,8 +35,29 @@ test('Testa o input Search planet', async () => {
 test('Testando os filtros', async () => {
   render(<SWProvider ><Table /></SWProvider>);
   waitFor(() => {
-    userEvent.type(screen.getByTestId("value-filter"), '200000000000')
-   userEvent.click(screen.getByRole('button', { name: 'Filtrar' }))
-   expect(screen.getByText('Alderaan')).not.toBeInTheDocument();
+    userEvent.type(screen.getByTestId("value-filter"), '200000000000');
+    userEvent.click(screen.getByRole('button', { name: 'Filtrar' }));
+     expect(screen.getByText('Alderaan')).not.toBeInTheDocument();
+  })
+});
+
+test('Testando os filtros parte 2', async () => {
+  render(<SWProvider ><Table /></SWProvider>);
+  waitFor(() => {
+   expect(screen.getByRole('combobox')).toHaveValue([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ])
+  const diam = screen.getByRole('option', { name: 'diameter'});
+  expect(diam).toBeInTheDocument();
+  userEvent.click(diam);
+  const equal = screen.getByRole('option', { name: 'igual a'});
+  expect(equal).toBeInTheDocument();
+  userEvent.click(equal);
+  userEvent.type(screen.getByTestId("value-filter"), '7200');
+  userEvent.click(screen.getByRole('button', { name: 'Filtrar' }));
 })
 });

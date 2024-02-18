@@ -15,6 +15,7 @@ function SWProvider({ children }: { children: React.ReactNode }) {
   const [comparison, setComparison] = useState('maior que');
   const [value, setValue] = useState(0);
   const [column, setColumn] = useState(columnOptions[0]);
+  const [filters, setFilters] = useState<any[]>([]); // req7
 
   useEffect(() => {
     const fetchSWPlanets = async () => {
@@ -33,7 +34,7 @@ function SWProvider({ children }: { children: React.ReactNode }) {
     const searchedData = () => {
       const newData = data.filter((planet: any) => planet
         .name.includes(search.toLowerCase()));
-      console.log(newData);
+      // console.log(newData);
       setPlsearched(newData);
     };
     searchedData();
@@ -60,6 +61,63 @@ function SWProvider({ children }: { children: React.ReactNode }) {
     });
     setPlsearched(dataFiltered);
     handleColumnOptions();
+    const newFilter = { // req7
+      column,
+      comparison,
+      value,
+    };
+    setFilters([...filters, newFilter]); // req7
+  };
+
+  const excludeFilter = (filterDelete: any) => { // req7
+    const newFilterdel = filters.filter((filter) => filter.column !== filterDelete);
+    setFilters(newFilterdel);
+    setColumnOptions([...columnOptions, filterDelete]);
+    setPlsearched(data);
+    console.log(newFilterdel);
+    newFilterdel.forEach((e) => {
+      const lastData = plsearched.filter((planet: any) => {
+        if (e.comparison === 'maior que') {
+          return Number(planet[e.column]) > Number(e.value);
+        }
+        if (e.comparison === 'menor que') {
+          return Number(planet[e.column]) < Number(e.value);
+        }
+        return Number(planet[e.column]) === Number(e.value);
+      });
+      console.log(lastData);
+      setPlsearched(lastData);
+    });
+  };
+  // useEffect(() => {
+  //   const newFilterData = () => {
+  //     setPlsearched(data);
+  //     console.log(filters);
+  //     filters.forEach((filter) => {
+  //       const lastData = plsearched.filter((planet: any) => {
+  //         if (filter.comparison === 'maior que') return Number(planet[filter
+  //           .column]) > Number(filter.value);
+  //         if (filter.comparison === 'menor que') return Number(planet[filter
+  //           .column]) < Number(filter.value);
+  //         return Number(planet[filter.column]) === Number(filter.value);
+  //       });
+  //       console.log(lastData);
+  //       setPlsearched(lastData);
+  //     });
+  //   };
+  //   newFilterData();
+  // }, [filters]);
+
+  const excludeAllFilters = () => { // req7
+    setFilters([]);
+    setColumnOptions([
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ]);
+    setPlsearched(data);
   };
 
   return (
@@ -74,6 +132,9 @@ function SWProvider({ children }: { children: React.ReactNode }) {
         handleFilter,
         saveOptions,
         columnOptions,
+        filters, // req7
+        excludeFilter, // req7
+        excludeAllFilters, // req7
       } }
     >
       {children}
