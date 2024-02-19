@@ -18,7 +18,14 @@ function Table() {
   } = useContext(SWContext);
 
   const dataKeys = Object.keys(data[0] || {});
-  // const comparisonOptions = ['maior que', 'menor que', 'igual a'];
+  const comparisonOptions = ['maior que', 'menor que', 'igual a'];
+  const columnSortOpt = [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ];
   return (
     <div>
       <input
@@ -45,10 +52,7 @@ function Table() {
           value={ comparison }
           onChange={ ({ target }) => saveOptions(target) }
         >
-          {/* {comparisonOptions.map((key) => (<option key={ key }>{key}</option>))} */}
-          <option value="maior que">maior que</option>
-          <option value="menor que">menor que</option>
-          <option value="igual">igual a</option>
+          {comparisonOptions.map((key) => (<option key={ key }>{key}</option>))}
         </select>
         <input
           type="number"
@@ -82,6 +86,41 @@ function Table() {
           onClick={ excludeAllFilters }
         >
           Remover Filtros
+        </button>
+      </div>
+      <div>
+      <select
+          // onChange={  }
+          data-testid="column-sort"
+        >
+          {columnSortOpt.map((option) => (
+            <option value={ option } key={ option }>
+              {option}
+            </option>
+          ))}
+        </select>
+        <input
+        id='asc'
+          type="radio"
+          value="ASC"
+          // onChange={  }
+          data-testid="column-sort-input-asc"
+        />
+        <label htmlFor="asc">ASC</label>
+        <input
+        id='desc'
+          type="radio"
+          value="DESC"
+          // onChange={  }
+          data-testid="column-sort-input-desc"
+        />
+        <label htmlFor="desc">DESC</label>
+        <button
+          type="button"
+          // onClick={  }
+          data-testid="column-sort-button"
+        >
+          Ordenar
         </button>
       </div>
       <table>
