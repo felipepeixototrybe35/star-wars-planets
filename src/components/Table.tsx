@@ -18,7 +18,7 @@ function Table() {
   } = useContext(SWContext);
 
   const dataKeys = Object.keys(data[0] || {});
-  const comparisonOptions = ['maior que', 'menor que', 'igual a'];
+  // const comparisonOptions = ['maior que', 'menor que', 'igual a'];
   return (
     <div>
       <input
@@ -45,7 +45,10 @@ function Table() {
           value={ comparison }
           onChange={ ({ target }) => saveOptions(target) }
         >
-          {comparisonOptions.map((key) => (<option key={ key }>{key}</option>))}
+          {/* {comparisonOptions.map((key) => (<option key={ key }>{key}</option>))} */}
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual">igual a</option>
         </select>
         <input
           type="number"
