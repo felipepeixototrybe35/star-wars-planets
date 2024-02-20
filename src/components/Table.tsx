@@ -89,7 +89,7 @@ function Table() {
         </button>
       </div>
       <div>
-      <select
+        <select
           // onChange={  }
           data-testid="column-sort"
         >
@@ -100,7 +100,7 @@ function Table() {
           ))}
         </select>
         <input
-        id='asc'
+          id="asc"
           type="radio"
           value="ASC"
           // onChange={  }
@@ -108,7 +108,7 @@ function Table() {
         />
         <label htmlFor="asc">ASC</label>
         <input
-        id='desc'
+          id="desc"
           type="radio"
           value="DESC"
           // onChange={  }
