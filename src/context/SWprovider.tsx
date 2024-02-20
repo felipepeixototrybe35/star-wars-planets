@@ -16,6 +16,8 @@ function SWProvider({ children }: { children: React.ReactNode }) {
   const [value, setValue] = useState(0);
   const [column, setColumn] = useState(columnOptions[0]);
   const [filters, setFilters] = useState<any[]>([]); // req7
+  const [sort, setSort] = useState('');
+  const [columnSort, setColumnSort] = useState('population');
 
   useEffect(() => {
     const fetchSWPlanets = async () => {
@@ -98,6 +100,10 @@ function SWProvider({ children }: { children: React.ReactNode }) {
     setPlsearched(data);
   };
 
+  const order = () => {
+
+  };
+
   return (
     <SWContext.Provider
       value={ {
@@ -113,6 +119,10 @@ function SWProvider({ children }: { children: React.ReactNode }) {
         filters, // req7
         excludeFilter, // req7
         excludeAllFilters, // req7
+        setSort,
+        sort,
+        order,
+        setColumnSort,
       } }
     >
       {children}

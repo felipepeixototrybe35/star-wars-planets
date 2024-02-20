@@ -15,6 +15,10 @@ function Table() {
     filters, // req7
     excludeFilter, // req7
     excludeAllFilters, // req7
+    setSort,
+    sort,
+    order,
+    setColumnSort,
   } = useContext(SWContext);
 
   const dataKeys = Object.keys(data[0] || {});
@@ -61,7 +65,9 @@ function Table() {
           value={ value }
           onChange={ ({ target }) => saveOptions(target) }
         />
-        <button data-testid="button-filter" onClick={ handleFilter }>Filtrar</button>
+        <button data-testid="button-filter" onClick={ handleFilter }>
+          Filtrar
+        </button>
       </div>
       <div>
         {filters.map((filter: any) => ( // req7
@@ -72,10 +78,7 @@ function Table() {
             </span>
             <span>{filter.comparison}</span>
             <span>{filter.value}</span>
-            <button
-              type="button"
-              onClick={ () => excludeFilter(filter.column) }
-            >
+            <button type="button" onClick={ () => excludeFilter(filter.column) }>
               X
             </button>
           </div>
@@ -90,7 +93,7 @@ function Table() {
       </div>
       <div>
         <select
-          // onChange={  }
+          onChange={ (e) => setColumnSort(e.target.value) }
           data-testid="column-sort"
         >
           {columnSortOpt.map((option) => (
@@ -103,7 +106,8 @@ function Table() {
           id="asc"
           type="radio"
           value="ASC"
-          // onChange={  }
+          onChange={ () => setSort('ASC') }
+          checked={ sort === 'ASC' }
           data-testid="column-sort-input-asc"
         />
         <label htmlFor="asc">ASC</label>
@@ -111,15 +115,12 @@ function Table() {
           id="desc"
           type="radio"
           value="DESC"
-          // onChange={  }
+          onChange={ () => setSort('DESC') }
+          checked={ sort === 'DESC' }
           data-testid="column-sort-input-desc"
         />
         <label htmlFor="desc">DESC</label>
-        <button
-          type="button"
-          // onClick={  }
-          data-testid="column-sort-button"
-        >
+        <button type="button" onClick={ order } data-testid="column-sort-button">
           Ordenar
         </button>
       </div>
