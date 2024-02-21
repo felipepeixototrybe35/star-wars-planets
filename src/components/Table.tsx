@@ -135,7 +135,8 @@ function Table() {
         <tbody>
           {plsearched.map((planet: any) => (
             <tr key={ planet.name }>
-              {dataKeys.map((key: any) => (
+              <td data-testid="planet-name">{planet.name}</td>
+              {dataKeys.slice(1).map((key: any) => (
                 <td key={ key }>{planet[key]}</td>
               ))}
             </tr>

@@ -101,7 +101,14 @@ function SWProvider({ children }: { children: React.ReactNode }) {
   };
 
   const order = () => {
-
+    const plsearchedSort = [...plsearched].slice().sort((a, b) => {
+      if (a[columnSort] === 'unknown') { return 1; }
+      if (b[columnSort] === 'unknown') { return -1; }
+      if (sort === 'DESC') { return b[columnSort] - a[columnSort]; }
+      return a[columnSort] - b[columnSort];
+    });
+    // console.log(plsearchedSort);
+    setPlsearched(plsearchedSort);
   };
 
   return (
