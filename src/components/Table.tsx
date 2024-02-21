@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import './Table.css';
 import SWContext from '../context/SWcontext';
 
 function Table() {
@@ -12,9 +13,9 @@ function Table() {
     saveOptions,
     handleFilter,
     columnOptions,
-    filters, // req7
-    excludeFilter, // req7
-    excludeAllFilters, // req7
+    filters,
+    excludeFilter,
+    excludeAllFilters,
     setSort,
     sort,
     order,
@@ -70,7 +71,7 @@ function Table() {
         </button>
       </div>
       <div>
-        {filters.map((filter: any) => ( // req7
+        {filters.map((filter: any) => (
           <div data-testid="filter" key={ filter.column }>
             <span>
               {filter.column}

@@ -15,7 +15,7 @@ function SWProvider({ children }: { children: React.ReactNode }) {
   const [comparison, setComparison] = useState('maior que');
   const [value, setValue] = useState(0);
   const [column, setColumn] = useState(columnOptions[0]);
-  const [filters, setFilters] = useState<any[]>([]); // req7
+  const [filters, setFilters] = useState<any[]>([]);
   const [sort, setSort] = useState('');
   const [columnSort, setColumnSort] = useState('population');
 
@@ -59,15 +59,15 @@ function SWProvider({ children }: { children: React.ReactNode }) {
     });
     setPlsearched(dataFiltered);
     handleColumnOptions();
-    const newFilter = { // req7
+    const newFilter = {
       column,
       comparison,
       value,
     };
-    setFilters([...filters, newFilter]); // req7
+    setFilters([...filters, newFilter]);
   };
 
-  const excludeFilter = (filterDelete: any) => { // req7
+  const excludeFilter = (filterDelete: any) => {
     const newFilterdel = filters.filter((filter) => filter.column !== filterDelete);
     setFilters(newFilterdel);
     setColumnOptions([...columnOptions, filterDelete]);
@@ -88,7 +88,7 @@ function SWProvider({ children }: { children: React.ReactNode }) {
       setPlsearched(data);
     }
   };
-  const excludeAllFilters = () => { // req7
+  const excludeAllFilters = () => {
     setFilters([]);
     setColumnOptions([
       'population',
@@ -107,7 +107,6 @@ function SWProvider({ children }: { children: React.ReactNode }) {
       if (sort === 'DESC') { return b[columnSort] - a[columnSort]; }
       return a[columnSort] - b[columnSort];
     });
-    // console.log(plsearchedSort);
     setPlsearched(plsearchedSort);
   };
 
@@ -123,9 +122,9 @@ function SWProvider({ children }: { children: React.ReactNode }) {
         handleFilter,
         saveOptions,
         columnOptions,
-        filters, // req7
-        excludeFilter, // req7
-        excludeAllFilters, // req7
+        filters,
+        excludeFilter,
+        excludeAllFilters,
         setSort,
         sort,
         order,
