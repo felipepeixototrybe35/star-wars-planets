@@ -1,5 +1,35 @@
-table, th, td {
-  border: 1px solid;
-  border-color: blue;
+table {
+  background-color: aqua;
+  border: 2px solid;
+  border-color: rgb(169, 3, 171);
   text-align: center;
+}
+
+th, td {
+  background-color: white;
+  border: 1px solid;
+  border-color: black;
+  }
+
+.filtros {
+  border: 2px;
+  border-color: black;
+  display: flex;
+  height: 200;
+  justify-content: space-between;
+}
+
+.filtro1 {
+  border: 1px;
+  border-color: black;
+}
+
+.filtro2 {
+  border: 1px;
+  border-color: black;
+}
+
+.filtro3 {
+  border: 1px;
+  border-color: black;
 }
