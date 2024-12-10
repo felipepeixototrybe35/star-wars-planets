@@ -14,4 +14,26 @@ Requisito 3 - Filtro para valores numéricos.
   O terceiro é uma caixa de texto que só aceita números.
   A combinação desses três seletores, após a pessoa usuária clicar no botão, deve filtrar os dados da tabela de acordo com a coluna correspondente e com os valores escolhidos.
 
+Requisito 4 - Múltiplos filtros numéricos.
+  É possível adicionar múltiplos filtros numéricos. Todos os filtros adicionados funcionam de forma conjunta.
+
+Requisito 5 - Testes unitários.
+
+Requisito 6 - Sem filtros repetidos.
+   Caso um filtro seja totalmente preenchido, um novo filtro de valores numéricos é carregado.
+   O novo filtro não inclui quaisquer colunas que já tenham sido selecionadas em filtros de valores numéricos anteriores.
+
+Requisito 7 - Remover filtragem ou todas as filtragem.
+  Apague um filtro de valor numérico ao clicar no ícone X de um dos filtros e apague todas as filtragens numéricas simultaneamente ao clicar no botão          Remover Filtros.
+
+Requisito 8 - Testes unitários e de integração.
+
+Requisito 9 - Filtro de ordenação descendente e ascendente.
+  A ordenação é feita via filtro: um dropdown selecionará a coluna a basear a ordenação e um par de radio buttons determina se a coluna é ascendente ou        descendente.
+
+Requisito 10 - Testes unitários e de integração.
+    
+
+
+
 
