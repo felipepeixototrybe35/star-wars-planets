@@ -1,4 +1,6 @@
-Neste projeto é desenvolvido uma lista com filtros de planetas do universo Star Wars usando Context API e Hooks para controlar os estados globais.
+Este projeto é fruto do curso de Desenvolvedor Web FullStack da Trybe, por isso os commits vem separados por requisitos. Parte do desenvolvimento do código foi realizado pela Trybe, os arquivos em que eu desenvolvi código são os explícitos nos commits.
+
+Aqui é desenvolvida uma lista com filtros de planetas do universo Star Wars usando Context API e Hooks para controlar os estados globais.
 
 Requisito 1 - Requisição para o endpoint /planets da API de Star Wars e preenchimento de uma tabela com os dados retornados.
   A coluna residents de cada planeta é apagada antes de salvar os dados recebidos da API no contexto.
